@@ -61,22 +61,7 @@ var stringifyJSON = function(obj) {
           if (currentValue !== undefined && typeof currentValue !== 'function') {
 
             result += '"' + key + '":';
-
-            if (typeof currentValue === 'number' || typeof currentValue === 'boolean') { 
-              result += String(currentValue);
-            }
-
-            if (typeof currentValue === 'string') {
-              result += ('"' + currentValue + '"');
-            }
-
-            if (typeof currentValue === 'object') {
-              result += stringifyJSON(currentValue);
-            }
-
-            if (currentValue === 'null') {
-              result += "null"
-            }
+            result += stringifyJSON(currentValue)
            
             if (key !== arrayOfObjects[arrayOfObjects.length-1]) { //if not last prop in object
               result += ','
