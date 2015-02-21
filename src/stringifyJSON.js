@@ -22,20 +22,8 @@ var stringifyJSON = function(obj) {
         for (var currentIndex=0; currentIndex < obj.length; currentIndex ++) {
           var currentElem = obj[currentIndex];
 
-          if (typeof currentElem === 'number') { 
-            result += String(currentElem);
-          }
-
-          if (typeof currentElem === 'string') {
-            result += '"' + currentElem + '"'
-          }
-
-          if (currentElem instanceof Array) {
-            result += stringifyJSON(currentElem);
-          }
-
-          if (typeof currentElem === 'object' && !(Array.isArray(currentElem))) {
-            result += stringifyJSON(currentElem);
+          if (currentElem !== undefined && typeof currentElem !== 'function') {
+            result += stringifyJSON(currentElem)
           }
          
           if (currentIndex != obj.length-1) {
@@ -74,7 +62,6 @@ var stringifyJSON = function(obj) {
       console.log('object result: ' + result)
     }
 
-
     if (typeof obj === 'boolean' || typeof obj === "number") {
       result += String(obj);
       console.log('bool/num result: ' + result)
@@ -88,7 +75,6 @@ var stringifyJSON = function(obj) {
     } 
 
     return result;
-
   } 
 };
 
